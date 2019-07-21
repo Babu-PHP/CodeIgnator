@@ -64,20 +64,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	
 	</style>
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
 
-<form action="action_page.php">
+<?php if($this->session->flashdata('success')): ?>
+    <p style="color: green;"><?php echo $this->session->flashdata('success'); ?></p>
+<?php endif; ?>
+<?php if($this->session->flashdata('error')): ?>
+    <div style="color: red;"><?php echo $this->session->flashdata('error'); ?></div>
+<?php endif; ?>
+<div style="color: red;"><?php echo validation_errors(); ?></div>
+<form name="regform" id="regform" action="<?php echo site_url('user/login') ?>" method="post">
   <div class="container">
     <h1>Login</h1>
     <p>Please fill in this form to access your account.</p>
     <hr>
 
     <label for="email"><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" name="email" required>
+    <input type="text" placeholder="Enter Email" name="email">
 
     <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
+    <input type="password" placeholder="Enter Password" name="psw">
     <hr>
     <button type="submit" class="registerbtn">Login</button>
   </div>
